@@ -1,0 +1,77 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="{:U('topic')}">话题</a></li>
+            <li class="active">{$category['name']}</li>
+        </ol>
+        <div class="col-md-9">
+            <div class="panel panel-defaul">
+                <div class="panel-heading">
+                    {$category['des']}
+                </div>
+                <div class="panel-body">
+                    <notempty name="topic['data']">
+                    <ul class="media-list talk-topic">
+                        <volist name="topic.data" id="vo">
+                        <li class="media">
+                            <a href="{:U('user/index', array('uid'=>$vo['uid']))}" class="pull-left">
+                               <img src="{:uavatar($vo['uid'])}" class="talk-avatar" width="50" height="50">
+                            </a>
+                            <div class="media-body">
+                                <div class="badge pull-right">{$vo['post_num']}</div>
+                                <h4 class="media-heading"><a href="{:U('topic/detail', array('tid'=>$vo['tid']))}"> {$vo['subject']}</a></h4>
+                                <div class="extra">
+                                    <span class="username">
+                                       <a href="{:U('user/index', array('uid'=>$vo['uid']))}">{$vo['username']}</a>
+                                    </span>
+                                    <span class="slant">•</span>
+                                    <span class="timeago" original-title="">发布于 {:friendly_date($vo['create_time'])}</span>
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                    </ul>
+                    <div class="text-center">
+                        {$topic['page']}
+                    </div>
+                    <else/>
+                        <p class="text-center">Ooops, 没有找到话题</p>
+                    </notempty>
+                    <notempty name="topic_lists['page']">
+                        <div class="text-center">
+                            {$topic_lists['page']}
+                        </div>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <gt name="mid" value="0">
+            <div class="panel">
+                <div class="panel-body text-center">
+                    <a href="{:U('topic/add',array('cid'=>$cid))}" class="btn btn-success btn-block">发表新话题</a>
+                </div>
+            </div>
+            </gt>
+            <div class="panel">
+                <div class="panel-heading">
+                    全部分类
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-pills nav-stacked">
+                        <foreach name="cate_lists" item="vo">
+                            <li <if condition="$vo['id']  eq $cid">class="active"</if> >
+                                <a href="{:U('topic/category',array('cid'=>$vo['id']))}">{$vo['name']}</a>
+                            </li>
+                        </foreach>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

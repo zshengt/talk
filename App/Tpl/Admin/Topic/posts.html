@@ -1,0 +1,38 @@
+<include file="Public:header" />
+    <div class="container-fluid">
+        <div class="row">
+           <include file="Public:sidebar" />
+            <div class="col-sm-11  col-md-10 main">
+                <h1 class="page-header">回复列表</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>作者</th>
+                            <th>内容</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="posts.data" id="vo">
+                        <tr>
+                            <td>{$vo.pid}</td>
+                            <td>{$vo.username}</td>
+                            <td>{:msubstr(strip_tags($vo['content']),0, 50)}</td>
+                            
+                            <td>{:friendly_date($vo['create_time'])}</td>
+                            <td>
+                                <a href="{:U('topic/delPost',array('pid'=>$vo['pid']))}"><i class="fa fa-trash-o"></i></a>
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    {$posts.page}
+                </div>
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

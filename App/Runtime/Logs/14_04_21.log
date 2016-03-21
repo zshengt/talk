@@ -1,0 +1,283 @@
+[ 2014-04-21T23:29:03+08:00 ] 127.0.0.1 /talkbeta/index.php?m=topic&a=index
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000180s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000319s ]
+SQL: SHOW COLUMNS FROM `talk_topic_category` [ RunTime:0.004025s ]
+SQL: SELECT * FROM `talk_topic_category` WHERE ( `status` = 1 ) ORDER BY view_sort  [ RunTime:0.000388s ]
+SQL: SHOW COLUMNS FROM `talk_topic` [ RunTime:0.001294s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `talk_topic` WHERE ( `status` = 1 ) LIMIT 1   [ RunTime:0.000421s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `status` = 1 ) ORDER BY create_time desc  [ RunTime:0.000238s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `is_stick` = 1 ) AND ( `status` = 1 ) ORDER BY create_time LIMIT 5   [ RunTime:0.000247s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.015853s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015977s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000203s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000185s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000087s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000188s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000921s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000129s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000219s ]
+
+[ 2014-04-21T23:29:08+08:00 ] 127.0.0.1 /talkbeta/index.php?m=topic&a=index
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000343s ]
+SQL: SHOW COLUMNS FROM `talk_topic_category` [ RunTime:0.011928s ]
+SQL: SELECT * FROM `talk_topic_category` WHERE ( `status` = 1 ) ORDER BY view_sort  [ RunTime:0.000291s ]
+SQL: SHOW COLUMNS FROM `talk_topic` [ RunTime:0.001134s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `talk_topic` WHERE ( `status` = 1 ) LIMIT 1   [ RunTime:0.000242s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `status` = 1 ) ORDER BY create_time desc  [ RunTime:0.000244s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `is_stick` = 1 ) AND ( `status` = 1 ) ORDER BY create_time LIMIT 5   [ RunTime:0.000241s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.015058s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015190s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000178s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000177s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000083s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000199s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000892s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000139s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000229s ]
+
+[ 2014-04-21T23:29:09+08:00 ] 127.0.0.1 /talkbeta/index.php?m=topic&a=index
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000328s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000572s ]
+SQL: SHOW COLUMNS FROM `talk_topic_category` [ RunTime:0.002867s ]
+SQL: SELECT * FROM `talk_topic_category` WHERE ( `status` = 1 ) ORDER BY view_sort  [ RunTime:0.000356s ]
+SQL: SHOW COLUMNS FROM `talk_topic` [ RunTime:0.000984s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `talk_topic` WHERE ( `status` = 1 ) LIMIT 1   [ RunTime:0.000252s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `status` = 1 ) ORDER BY create_time desc  [ RunTime:0.000241s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `is_stick` = 1 ) AND ( `status` = 1 ) ORDER BY create_time LIMIT 5   [ RunTime:0.000233s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.014757s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014879s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000179s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000177s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000084s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000202s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000898s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000135s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000225s ]
+
+[ 2014-04-21T23:29:21+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=signup
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000297s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000502s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.020968s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021095s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000183s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000206s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000075s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000191s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000905s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000128s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000219s ]
+
+[ 2014-04-21T23:29:21+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=verify
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /www/talkbeta/ThinkPHP/Extend/Library/ORG/Util/Captcha.class.php 第 31 行.
+
+[ 2014-04-21T23:29:22+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000296s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000508s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.009407s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009526s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000155s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000209s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000075s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000218s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000907s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000127s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000217s ]
+
+[ 2014-04-21T23:29:23+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=signup
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000190s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000353s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.007949s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008071s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000162s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000200s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000075s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000207s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000901s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000139s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000238s ]
+
+[ 2014-04-21T23:29:23+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=verify
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000175s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000298s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /www/talkbeta/ThinkPHP/Extend/Library/ORG/Util/Captcha.class.php 第 31 行.
+
+[ 2014-04-21T23:29:28+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000296s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.006972s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.007107s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000193s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000214s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000080s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000205s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000964s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000139s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000232s ]
+
+[ 2014-04-21T23:29:37+08:00 ] 127.0.0.1 /talkbeta/index.php?m=user&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000474s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.001931s ]
+SQL: SELECT `uid`,`username`,`password`,`salt`,`is_active`,`last_login_time`,`is_admin` FROM `talk_user` WHERE ( `email` = 'thinkphper@gmail.com' )  [ RunTime:0.000487s ]
+SQL: UPDATE `talk_user` SET `credit`=credit+10 WHERE ( `uid` = 1 ) [ RunTime:0.001290s ]
+SQL: UPDATE `talk_user` SET `last_login_time`=1398094177 WHERE ( `uid` = 1 ) [ RunTime:0.000377s ]
+
+[ 2014-04-21T23:29:37+08:00 ] 127.0.0.1 /talkbeta/index.php?m=topic&a=index
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000291s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000486s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.001792s ]
+SQL: SELECT * FROM `talk_user` WHERE ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000456s ]
+SQL: SHOW COLUMNS FROM `talk_topic_category` [ RunTime:0.001861s ]
+SQL: SELECT * FROM `talk_topic_category` WHERE ( `status` = 1 ) ORDER BY view_sort  [ RunTime:0.000333s ]
+SQL: SHOW COLUMNS FROM `talk_topic` [ RunTime:0.013721s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `talk_topic` WHERE ( `status` = 1 ) LIMIT 1   [ RunTime:0.000262s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `status` = 1 ) ORDER BY create_time desc  [ RunTime:0.000193s ]
+SQL: SELECT * FROM `talk_topic` WHERE ( `is_stick` = 1 ) AND ( `status` = 1 ) ORDER BY create_time LIMIT 5   [ RunTime:0.000185s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.021410s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021576s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000276s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000289s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000158s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000349s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001527s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000248s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000377s ]
+
+[ 2014-04-21T23:29:40+08:00 ] 127.0.0.1 /talkbeta/index.php?g=admin&m=public&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000331s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.005303s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005442s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000204s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000197s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000076s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000196s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000948s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000197s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000315s ]
+
+[ 2014-04-21T23:29:40+08:00 ] 127.0.0.1 /talkbeta/index.php?g=home&m=user&a=verify
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000304s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000499s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.001881s ]
+SQL: SELECT * FROM `talk_user` WHERE ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000456s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /www/talkbeta/ThinkPHP/Extend/Library/ORG/Util/Captcha.class.php 第 31 行.
+
+[ 2014-04-21T23:29:51+08:00 ] 127.0.0.1 /talkbeta/index.php?g=home&m=user&a=checkVerify
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000168s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000272s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.003818s ]
+SQL: SELECT * FROM `talk_user` WHERE ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000370s ]
+
+[ 2014-04-21T23:29:51+08:00 ] 127.0.0.1 /talkbeta/index.php?g=admin&m=public&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000282s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000446s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.001694s ]
+SQL: SELECT `uid`,`username`,`password`,`salt`,`is_active`,`last_login_time`,`is_admin` FROM `talk_user` WHERE ( `email` = 'thinkphper@gmail.com' )  [ RunTime:0.000322s ]
+SQL: UPDATE `talk_user` SET `credit`=credit+10 WHERE ( `uid` = 1 ) [ RunTime:0.000243s ]
+SQL: UPDATE `talk_user` SET `last_login_time`=1398094191 WHERE ( `uid` = 1 ) [ RunTime:0.000203s ]
+
+[ 2014-04-21T23:29:51+08:00 ] 127.0.0.1 /talkbeta/index.php?g=admin&m=index&a=index
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000308s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000515s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.010688s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010902s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000287s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000307s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000143s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000374s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001620s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000250s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000434s ]
+
+[ 2014-04-21T23:29:54+08:00 ] 127.0.0.1 /talkbeta/index.php?g=admin&m=public&a=logout
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000284s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000490s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.014881s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015045s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000175s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000162s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000075s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000198s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000887s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000129s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000226s ]
+
+[ 2014-04-21T23:29:55+08:00 ] 127.0.0.1 /talkbeta/index.php?g=admin&m=public&a=login
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000345s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000593s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.004991s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005185s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.000165s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000197s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000075s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000195s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000907s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.000128s ]
+INFO: [ view_end ] --END-- [ RunTime:0.000225s ]
+
+[ 2014-04-21T23:29:55+08:00 ] 127.0.0.1 /talkbeta/index.php?g=home&m=user&a=verify
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000175s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000293s ]
+SQL: SHOW COLUMNS FROM `talk_user` [ RunTime:0.002237s ]
+SQL: SELECT * FROM `talk_user` WHERE ( `uid` = 1 ) LIMIT 1   [ RunTime:0.000474s ]
+NOTIC: [8] A session had already been started - ignoring session_start() /www/talkbeta/ThinkPHP/Extend/Library/ORG/Util/Captcha.class.php 第 31 行.
+

@@ -1,0 +1,51 @@
+<include file="Public:header" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4>账号设置</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs">
+                            <li><a href="{:U('account/settings')}">基本信息</a></li>
+                            <li class="active"><a href="{:U('account/avatar')}">修改头像</a></li>
+                            <li><a href="{:U('account/password')}">密码安全</a></li>
+                        </ul>
+                        <div class="talk-account">
+                            <div class="col-md-2">
+                                <img id="user-avatar" src="{:uavatar($user['uid'], 'big')}" alt="" class="talk-avatar big" >
+                            </div>
+                            <div class="col-md-4">
+                                <span class="btn btn-success fileinput-button">
+                                    <span>上传头像...</span>
+                                    <input id="fileupload" type="file" name="files" data-url="{:U('account/upload')}">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+<script  src="__PUBLIC__/js/jquery.ui.widget.js"></script>
+<script  src="__PUBLIC__/js/jquery.iframe-transport.js"></script>
+<script  src="__PUBLIC__/js/jquery.fileupload.js"></script>
+
+<script type="text/javascript">
+$(function() {
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        done:  function(e ,data) {
+            var data = data.result;
+            if (data.status ==0) {
+                bootbox.alert(data.info);
+            } else {
+              $('#user-avatar').attr('src', data.avatar);
+            }
+        }
+    });
+ });
+</script>

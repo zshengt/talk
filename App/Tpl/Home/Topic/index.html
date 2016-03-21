@@ -1,0 +1,112 @@
+<include file="Public:header" />
+
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li class="active">话题</li>
+        </ol>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <notempty name="stick_topics">
+                <div class="panel-heading">推荐话题</div>
+                <div class="panel-body">
+                    <ul class="media-list talk-topic">
+                        <volist name="stick_topics" id="stick">
+                            <li class="media">
+                                <a href="{:U('user/index', array('uid'=>$stick['uid']))}" class="pull-left">
+                                   <img src="{:uavatar($stick['uid'])}" class="talk-avatar middle">
+                                </a>
+                                <div class="media-body">
+                                    <gt name="stick.post_num" value="0">
+                                    <div class="badge pull-right">{$stick['post_num']}</div>
+                                    </gt>
+                                    <h4 class="media-heading">
+                                        <a href="{:U('topic/detail', array('tid'=>$stick['tid']))}"> {$stick['subject']}</a>
+                                    </h4>
+                                    <div class="extra">
+                                        <span class="category">
+                                           <a href="{:U('topic/category', array('cid'=>$stick['cid']))}">{$stick['cate_list']['name']}</a>
+                                        </span>
+                                        <span class="slant">•</span>
+                                        <span class="username">
+                                           <a href="{:U('user/index', array('uid'=>$stick['uid']))}">{$stick['username']}</a>
+                                        </span>
+                                        <span class="slant">•</span>
+                                        <small class="timeago" original-title="">发布于 {:friendly_date($stick['create_time'])}</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                </notempty>
+                <div class="panel-heading">最新话题</div>
+                <div class="panel-body">
+                    <notempty name="topics.data">
+                    <ul class="media-list talk-topic">
+                        <volist name="topics.data" id="vo">
+                        <li class="media">
+                            <a href="{:U('user/index', array('uid'=>$vo['uid']))}" class="pull-left">
+                               <img src="{:uavatar($vo['uid'])}" class="talk-avatar middle">
+                            </a>
+                            <div class="media-body">
+                                <gt name="vo.post_num" value="0">
+                                <div class="badge pull-right">{$vo['post_num']}</div>
+                                </gt>
+                                <h4 class="media-heading"><a href="{:U('topic/detail', array('tid'=>$vo['tid']))}"> {$vo['subject']}</a></h4>
+                                <div class="extra">
+                                    <span class="category">
+                                       <a href="{:U('topic/category', array('cid'=>$vo['cid']))}">{$vo['cate_list']['name']}</a>
+                                    </span>
+                                    <span class="slant">•</span>
+                                    <span class="username">
+                                       <a href="{:U('user/index', array('uid'=>$vo['uid']))}">{$vo['username']}</a>
+                                    </span>
+                                    <span class="slant">•</span>
+                                    <small class="timeago" original-title="">发布于 {:friendly_date($vo['create_time'])}</small>
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                    </ul>
+                    <div class="text-center">
+                        {$topics['page']}
+                    </div>
+                    <else/>
+                        <span>还没有话题</span>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <gt name="mid"  value="0">
+            <div class="panel">
+                <div class="panel-body text-center">
+                    <a href="{:U('topic/add')}" class="btn btn-success btn-block">发表新话题</a>
+                </div>
+            </div>
+            </gt>
+            <div class="panel">
+                <div class="panel-heading">
+                    全部分类
+                </div>
+                <div class="panel-body">
+                    <notempty name="cate_lists">
+                    <ul class="nav nav-pills nav-stacked">
+                        <volist name="cate_lists" id="vo">
+                            <li>
+                               <a href="{:U('topic/category',array('cid'=>$vo['id']))}">{$vo['name']}</a>
+                            </li>
+                        </volist>
+                    </ul>
+                    <else/>
+                    <span>还没有分类</span>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

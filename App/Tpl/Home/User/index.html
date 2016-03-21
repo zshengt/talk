@@ -1,0 +1,149 @@
+<include file="Public:header" />
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel">
+					<include file="top" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div class="user-action panel">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="{:U('user/index', array('uid'=>$user_list['uid']))}">话题</a></li>
+						<li><a href="{:U('user/followers', array('uid'=>$user_list['uid']))}">关注</a></li>
+						<li><a href="{:U('user/fans',array('uid'=>$user_list['uid']))}">粉丝</a></li>
+					</ul>
+					<div class="tab-content">
+						<notempty name="topic_lists.data">
+				      	<ul class="media-list talk-topic ">
+				      		<volist name  = "topic_lists.data" id="topic">
+							<li class="media">
+								<a class="pull-left" href="{:U('user/index', array('uid'=>$topic['uid']))}">
+									<img src="{:uavatar($topic['uid'])}" class="talk-avatar" width="50" height="50">
+								</a>
+								<div class="media-body">
+									<gt name="topic.post_num" value="0">
+									<div class="badge pull-right">{$topic['post_num']}</div>
+									</gt>
+									<h4 class="media-heading"><a  href="{:U('topic/detail', array('tid'=>$topic['tid']))}"> {$topic['subject']}</a></h4>
+									<p><a href="{:U('user/index', array('uid'=>$topic['uid']))}">{$topic['username']}</a> 发布于 {:friendly_date($topic['create_time'])}</p>
+								</div>
+							</li>
+							</volist>
+						</ul>
+						<else/>
+							还没有发表话题
+						</notempty>
+						<notempty name="topic_lists['page']">
+						  	<div class="text-center">
+						        {$topic_lists['page']}
+							</div>
+						</notempty>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="message" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">发私信</h4>
+			</div>
+			<form id="send-message" class="form-horizontal">
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="col-md-2 control-label"><label for="message_receiver" class="required">发给：</label></div>
+						<div class="col-md-8">
+							<input type="text" class="form-control"  value="{$user_list['username']}" disabled/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-2 control-label"><label>内容</label></div>
+						<div class="col-md-8">
+							<textarea id="content" name="content"  class="form-control" rows="5"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+					      <div class="col-md-offset-2 col-md-2">
+					      	<input type="hidden" name="touid" id="touid" value="{$user_list['uid']}">
+					        <button class="btn btn-primary" type="submit">发送</button>
+					      </div>
+					      <div class="col-md-4">
+					      		<div id="error"></div>
+					      </div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+	$(function(){
+		$('[data-toggle="modal"]').on('click', function(e) {
+				$('#message').modal();
+			});
+		$('#send-message').on('submit',function(e) {
+			e.preventDefault();
+			var touid = $('#touid').val(),
+			    content =$.trim($('#content').val());
+			if (content == '') {
+				$('#error').html('内容不能为空!');
+				return  false;
+			}
+			$.ajax({
+				url: '{:U('message/send')}',
+				type: 'post',
+				dataType: 'json',
+				data: { touid:touid, content:content},
+				success: function(data) {
+					$('#content').val('');
+					$('#message').modal('hide');
+				}
+			});
+
+		});
+
+		$('#follow').on('click', function(e) {
+			var touid = $(this).attr('data-uid');
+			$.ajax({
+				url: '{:U("user/follow")}',
+				type: 'POST',
+				dataType: 'json',
+				data: { touid: touid},
+				success: function(data) {
+					if (data.status ==0) {
+						bootbox.alert(data.info);
+					} else {
+						location.reload();
+					}
+				}
+			});
+			
+		});
+
+		$('#unfollow').on('click', function(e) {
+			var touid = $(this).attr('data-uid');
+			$.ajax({
+				url: '{:U("user/unfollow")}',
+				type: 'POST',
+				dataType: 'json',
+				data: { touid: touid},
+				success: function(data) {
+					if (data.status ==0) {
+						bootbox.alert(data.info);
+					} else {
+						location.reload();
+					}
+				}
+			});
+		});
+	});
+</script>

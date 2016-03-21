@@ -1,0 +1,59 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>消息</h4>
+                </div>
+                <div class="panel-body">
+                    <notempty name="notify_list.data">
+                        <ul class="media-list notify-list">
+                            <volist name="notify_list.data" id="notify">
+                                <li class="media">
+                                    <a href="{:U('user/index', array('uid'=>$notify['from_uid']))}" class="pull-left">
+                                        <img src="{:uavatar($notify.from_uid)}" alt=""  class="talk-avatar middle">
+                                    </a>
+                                    <div class="media-body">
+                                        <switch name="notify.type">
+                                            <case value="1">
+                                                <h5 class="media-heading"><a href="{:U('user/index', array('uid'=>$notify['from_uid']))}">{$notify.from_uname}</a> 评论你的话题 <a href="{:U('topic/detail',array('tid'=>$notify['tid']))}">{$notify.subject}</a>
+                                                    <small>{:friendly_date($notify['create_time'])}</small>
+                                                </h5>
+                                                <div class="alert alert-warning">
+                                                    <p>{$notify.content}</p>
+                                                </div>
+                                            </case>
+                                            <case value="2">
+                                                <h5 class="media-heading"><a href="{:U('user/index', array('uid'=>$notify['from_uid']))}">{$notify.from_uname}</a> 关注了你
+                                                    <small>{:friendly_date($notify['create_time'])}</small>
+                                                </h5>
+                                            </case>
+                                            <case value="3">
+                                                <h5 class="media-heading"><a href="{:U('user/index', array('uid'=>$notify['from_uid']))}">{$notify.from_uname}</a> 评论话题 <a href="{:U('topic/detail',array('tid'=>$notify['tid']))}">{$notify.subject}</a>时提到了你
+                                                    <small>{:friendly_date($notify['create_time'])}</small>
+                                                </h5>
+                                                <div class="alert alert-warning">
+                                                    <p>{$notify.content}</p>
+                                                </div>
+                                            </case>
+                                        </switch>
+                                    </div>
+                                </li>
+                            </volist>
+                        </ul>
+                        <div class="text-center">
+                            {$notify_list.page}
+                        </div>
+                    <else/>
+                        还没有提醒
+                    </notempty>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

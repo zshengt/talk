@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<title>{$title}  Powered by welinked</title>
+<meta name="keywords" content="{:C('web_keywords')}" />
+<meta name="description" content="{:C('web_des')}" />
+<link href="__PUBLIC__/css/bootstrap.css" rel="stylesheet">
+<link href="__PUBLIC__/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="__PUBLIC__/css/font-awesome/css/font-awesome.min.css">
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/js/html5.js"></script>
+<script src="__PUBLIC__/js/css3.js"></script>
+<script src="__PUBLIC__/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle needsclick" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand logo" href="{:U('topic/index')}"><img class="logo" src="__PUBLIC__/img/logo.png"/></a>
+			<a class="navbar-brand" href="{:U('topic/index')}">首页</a>
+		</div>
+	    <div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="{:U('topic/index')}">话题</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right ">
+				<gt name="mid"  value="0">
+					<li>
+						<a href="{:U('user/index', array('uid'=>$user['uid']))}">
+							{$user.username}
+						</a>
+					</li>
+					<li class="notify">
+						<a href="{:U('message/notify')}">
+							<i class="fa fa-bell"></i>
+							<gt name="user.at_num" value="0"><span class="badge" id="notify">{$user.at_num}</span></gt>
+						</a>
+					</li>
+					<li class="inbox">
+						<a href="{:U('message/index')}">
+							<i class="fa fa-envelope-o"></i>
+							<gt name="user.inbox_num" value="0"><span class="badge" id="inbox">{$user.inbox_num}</span></gt>
+						</a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-cog"></i>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+			                <li><a href="{:U('account/settings')}"><i class="fa fa-user"></i>账号设置</a></li>
+			                <li class="divider"></li>
+            				<eq name="user.is_admin"  value="1">
+                            	<li><a href="{:U('admin/public/login')}"><i class="fa fa-user"></i>后台管理</a></li>
+			               	<li class="divider"></li>	
+			               	</eq>		
+			                <li><a href="{:U('user/logout')}"><i class="fa fa-power-off"></i>退出</a></li>
+			            </ul>
+					</li>
+				<else />
+					<li><a href="{:U('user/signup')}">注册</a></li>
+					<li><a href="{:U('user/login')}">登录</a></li>
+				</gt>
+			</ul>
+	    </div>
+	</div>
+</div>
+

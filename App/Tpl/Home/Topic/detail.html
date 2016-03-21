@@ -1,0 +1,190 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="{:U('topic/index')}">话题</a></li>
+            <li><a href="{:U('topic/category',array('cid'=>$topic['cid']))}">{$topic['catename']}</a></li>
+            <li class="active">{$topic['subject']}</li>
+        </ol>
+        <div class="col-md-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>{$topic['subject']}</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list talk-posts" id="talk-posts">
+                        <volist name="topic.post_lists.data" id="vo">
+                        <li class="media" id="post-{$vo.pid}">
+                            <a href="{:U('user/index', array('uid'=>$vo['uid']))}" class="pull-left">
+                               <img src="{:uavatar($vo['uid'])}" class="talk-avatar middle">
+                            </a>
+                            <div class="media-body">
+                                <gt name="mid" value="0">
+                                <div class="pull-right extra">
+                                    <if condition="$vo['uid'] neq $mid">
+                                    <a href="javascript:;"  id="post-quote"  onclick="replyPost('{$vo.username}')" ><i class="fa fa-reply"></i></a>
+                                    </if>
+                                    <if condition="($vo['uid']  eq $mid) AND ($vo['first'] eq  0)">
+                                        <a href="javascript:;" id="control-delete" onclick="deletePost('{$vo.pid}')" ><i class="fa fa-trash-o"></i></a>
+                                    </if>
+                                </div>
+                                </gt>
+                                <h4 class="media-heading">
+                                    <span class="username"><a href="{:U('user/index',array('uid'=>$vo['uid']))}">{$vo['username']}</a></span>
+                                    <small class="timeago" original-title="{:date('Y年m月d日 H:i:s', $vo['create_time'])}">{:friendly_date($vo['create_time'])}</small>
+                                </h4>
+                                <div class="content">
+                                    {$vo['content']}
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                        <div class="text-center">
+                            {$topic['post_lists']['page']}
+                        </div>
+                    </ul>
+                    <script id="posts" type="text/x-jquery-tmpl">
+                        <li class="media">
+                            <a href="${space}" class="pull-left">
+                               <img src="${avatar}" class="talk-avatar" width="50" height="50">
+                            </a>
+                            <div class="media-body">
+                                <div class="pull-right extra">
+                                    <a href="javascript:;" id="post-delete" onclick="delete()" title="删除"><i class="fa fa-trash-o"></i></a>
+                                </div>
+                                <h5 class="media-heading">
+                                    <span class="username"><a href="${space}">${username}</a></span>
+                                    <small class="timeago">刚刚</small>
+                                </h5>
+                                <div class="content">
+                                    ${content}                        
+                                </div>
+                            </div>
+                        </li>
+                    </script>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <gt name="mid"  value="0">
+                    <h3>说点什么</h3>
+                    <form action="" method="post" id="reply">
+                        <div class="form-group">
+                            <textarea id="comment"  class="form-control" name="content" rows="5" ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="tid" value="{$topic['tid']}" id="tid">
+                            <button type="submit" class="btn btn-primary pull-right">回复</button>
+                        </div>
+                    </form>
+                    <else/>
+                         <p class="text-center"><a href="{:U('user/login')}">登录</a>或者<a href="{:U('user/signup')}">注册</a></p>
+                    </gt>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <if condition="$topic['uid']  eq  $mid">
+            <div class="panel">
+                <div class="panel-body text-center">
+                    <a href="{:U('topic/edit',array('tid'=>$topic['tid']))}" class="btn btn-success btn-block">编辑话题</a>
+                    <a  href="javascript:;" onclick="del({$topic['tid']})" class="btn btn-danger btn-block">删除话题</a>
+                </div>
+            </div>
+            </if>
+            <notempty name="relation_topics">
+            <div class="panel">
+                <div class="panel-heading">
+                    相关话题
+                </div>
+                <ul class="list-group">
+                    <volist name="relation_topics" id="vo">
+                        <li class="list-group-item"><a href="{:U('topic/detail',array('tid'=>$vo['tid']))}">{$vo.subject}</a></li>
+                    </volist>
+                </ul>
+            </div>
+            </notempty>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+<script>
+    $(function(){
+        $("#comment").keydown(function(e){
+            if(e.ctrlKey && e.which == 13 || e.which == 10) {
+                $("#reply").submit();
+            }
+        });
+
+        $("#reply").on('submit', function(e) {
+            e.preventDefault();
+            var tid  = $('#tid').val();
+            var content = $.trim($('#comment').val());
+            if (content == '') {
+                bootbox.alert('内容不能为空');
+                return false;
+            }
+
+            $.ajax({
+                url: "{:U('topic/reply')}",
+                type: 'POST',
+                dataType: 'json',
+                data: {tid: tid, content: content},
+                success :function(data) {
+                    if (data.status ==0) {
+                        bootbox.alert(data.info);
+                        return false;
+                    } else {
+                        var html = $( "#posts" ).tmpl( data ).appendTo( "#talk-posts" );
+                        $('#comment').val('');
+                    }
+                }
+            });
+
+
+        });
+
+    });
+    function  del(tid){
+        bootbox.confirm("确定要删除主题吗?", function(result) {
+            if (result) {
+                $.ajax({
+                      type: "POST",
+                      url: "{:U('topic/del')}",
+                      data: {tid: tid},
+                      success:function(data){
+                          if (data.status == 0) {
+                              bootbox.alert(data.info);
+                              return  false;
+                          } else {
+                              window.location.href = data.url;
+                          }
+                      }
+                });
+            }
+        });
+    }
+
+    function  deletePost(pid){
+        bootbox.confirm("确定要删除回复吗?", function(result) {
+            if (result) {
+                $.ajax({
+                      type: "POST",
+                      url: "{:U('topic/delPost')}",
+                      data: {pid: pid},
+                      success:function(msg){
+                          $("#post-"+pid).slideUp(200);
+                      }
+                });
+            }
+        });
+    }
+
+    function  replyPost(name){
+        var name  = '@' + name +  ' ';
+        $('#comment').insertAtCaret(name);
+    }
+
+</script>
+</body>
+</html>

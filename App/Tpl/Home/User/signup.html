@@ -1,0 +1,157 @@
+<include file="Public:header" />
+
+<div class="container">
+	<div class="row">
+		<div class="panel talk-form">
+	 		<form id="talk-signup" action="{:U('user/signup')}" method="post" class="form-horizontal">
+				<div class="panel-heading">
+					欢迎加入{:C('web_name')}
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-md-3 control-label">邮箱：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="email" name="email" value="">
+					</div>
+				</div>
+				<div class="form-group">
+			        <label for="password" class="col-md-3 control-label">密码：</label>
+			        <div class="col-md-8">
+						<input type="password" class="form-control" id="password" name="password">
+			        </div>
+				</div>
+				<div class="form-group">
+			        <label for="repassword" class="col-md-3 control-label">确认密码：</label>
+			        <div class="col-md-8">
+			        	<input type="password" class="form-control" name="repassword">
+			        </div>
+				</div>
+				<div class="form-group">
+					<label for="email" class="col-md-3 control-label">用户名：</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" id="username" name="username" value="">
+					</div>
+				</div>
+				<div class="form-group">
+			        <label for="verify" class="col-md-3 control-label">验证码：</label>
+			        <div class="col-md-3">
+			        	<input type="password" class="form-control" name="verify" id="captcha">
+			        </div>
+			        <div class="col-md-3">
+			        	<img src="{:U('user/verify')}" alt="" id="verify">
+			        </div>
+			        <div class="col-md-3">
+			        	<a href="javascript:;" id="reloadVerify" title="换一张">换一张？</a>
+			        </div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-3 col-md-2">
+						<button type="submit" class="btn btn-primary">注册</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+	$("#talk-signup").validate({
+	    rules: {
+	        username: {
+	        	required: true,
+	        	stringCheck: true,
+	        	rangelength: [ 2, 10 ],
+	        	remote: {
+	        		url : '{:U("user/checkUsername")}',
+	        		type: 'post',
+	        		dataType: "json",
+	        		data: {
+	        			username: function(){return $('#username').val();}
+	        		},
+	        		dataFilter: function(data){
+	        			if (data ==true) {
+	        			 	return  false;
+	        			} else {
+	        				return  true;
+	        			}
+	        		}
+	        	}
+	        },	
+	        email: {
+	            required: true,
+	            email: true,
+	            remote: {
+	            	url : '{:U("user/checkEmail")}',
+	            	type: 'post',
+	            	dataType: "json",
+	            	data: {
+	            		email: function(){return $('#email').val();}
+	            	},
+	            	dataFilter: function(data, type){
+	            		if (data) {
+	            		 	return  false;
+	            		} else {
+	            			return  true;
+	            		}
+
+	            	}
+	            }
+	        },
+	        password: "required",
+	        repassword: {
+	            required: true,
+	            equalTo: "#password"
+	        },
+	        verify: {
+	        	required: true,
+	        	remote: {
+	        		url : "{:U('user/checkVerify')}",
+	        		type: 'post',
+	        		dataType: "json",
+	        		data: {
+	        			captcha: function(){return $('#captcha').val();}
+	        		},
+	        		dataFilter: function(data, type){
+	        			if (data) {
+	        			 	return true;
+	        			} else {
+	        				return false;
+	        			}
+
+	        		}
+	        	}
+	        }
+	    },
+	    messages: {
+	    	username: {
+	    		required: "用户名不能为空",
+	    		rangelength: "用户名不能少于两个字",
+	    		stringCheck: "只能包含中文、英文、数字、下划线等字符",
+	    		remote: "用户名已存在"
+	    	},
+	        email: {
+	            required: "邮箱不能为空",
+	            email: "邮箱格式不正确",
+	            remote: "邮箱已经存在"
+	        },
+	        password: {
+	            required: "密码不能为空"
+	        },
+	        repassword: {
+	            required: "确认密码不能为空"
+	        },
+	        verify: {
+	        	required: "验证码不能为空",
+	        	remote: "验证码错误"
+	        }
+	    },
+	    submitHandler: function(form) {
+	    	form.submit();
+	    }
+	});
+	$('#reloadVerify').click(function(){
+	    var captchaUrl = "{:U('user/verify')}&t=";
+	    $('#verify').attr('src', captchaUrl + Math.random());
+	});
+</script>
+</body>
+</html>

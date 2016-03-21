@@ -1,0 +1,48 @@
+<include file="Public:header" />
+    <div class="container-fluid">
+        <div class="row">
+           <include file="Public:sidebar" />
+            <div class="col-sm-11  col-md-10 main">
+                <h1 class="page-header">用户列表</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>用户名</th>
+                            <th>邮箱</th>
+                            <th>状态</th>
+                            <th>加入时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="users.data" id="user">
+                        <tr>
+                            <td>{$user.uid}</td>
+                            <td>{$user.username}</td>
+                            <td>{$user.email}</td>
+                            <td>
+                                <if condition="$user.is_active eq 1">
+                                    激活
+                                <elseif condition="$user.is_active  eq -1" />
+                                    禁用
+                                <else/>
+                                    未激活
+                                </if>
+                            </td>
+                            <td>{:friendly_date($user['create_time'])}</td>
+                            <td>
+                                <a href="{:U('user/del',array('uid'=>$user['uid']))}"><i class="fa fa-trash-o"></i></a>
+                            </td> 
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    {$users.page}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

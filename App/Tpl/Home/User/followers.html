@@ -1,0 +1,107 @@
+<include file="Public:header" />
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel">
+				<include file="top" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="user-action panel">
+				<ul class="nav nav-tabs">
+					<li><a href="{:U('user/index', array('uid'=>$user_list['uid']))}">话题</a></li>
+					<li class="active"><a href="{:U('user/followers', array('uid'=>$user_list['uid']))}">关注</a></li>
+					<li><a href="{:U('user/fans',array('uid'=>$user_list['uid']))}">粉丝</a></li>
+				</ul>
+				<div class="tab-content">
+					<notempty name="followers">
+			      	<ul class="media-list">
+			      		<volist name="followers" id="follower">
+						<li class="media">
+							<a class="pull-left" href="{:U('user/index',array('uid'=>$follower['to_uid']))}">
+								<img src="{:uavatar($follower['to_uid'])}" class="talk-avatar middle">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading"><a href="{:U('user/index',array('uid'=>$follower['to_uid']))}">{$follower['username']}</a></h4>
+								<p>{$follower['intro']}</p>
+							</div>
+						</li>
+						</volist>
+					</ul>
+					<else/>
+						还没有关注者
+					</notempty>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+<include file="Public:footer" />
+<script>
+	$(function(){
+		$('[data-toggle="modal"]').on('click', function(e) {
+				$('#message').modal();
+			});
+		$('#send-message').on('submit',function(e) {
+			e.preventDefault();
+			var touid = $('#touid').val(),
+			    content =$.trim($('#content').val());
+			if (content == '') {
+				$('#error').html('内容不能为空!');
+				return  false;
+			}
+			$.ajax({
+				url: '{:U('message/send')}',
+				type: 'post',
+				dataType: 'json',
+				data: { touid:touid, content:content},
+				success: function(data) {
+					$('#content').val('');
+					$('#message').modal('hide');
+				}
+			});
+
+		});
+
+		$('#follow').on('click', function(e) {
+			var touid = $(this).attr('data-uid');
+			$.ajax({
+				url: '{:U("user/follow")}',
+				type: 'POST',
+				dataType: 'json',
+				data: { touid: touid},
+				success: function(data) {
+					if (data.status ==0) {
+						bootbox.alert(data.info);
+					} else {
+						location.reload();
+					}
+				}
+			});
+			
+		});
+
+		$('#unfollow').on('click', function(e) {
+			var touid = $(this).attr('data-uid');
+			$.ajax({
+				url: '{:U("user/unfollow")}',
+				type: 'POST',
+				dataType: 'json',
+				data: { touid: touid},
+				success: function(data) {
+					if (data.status ==0) {
+						bootbox.alert(data.info);
+					} else {
+						location.reload();
+					}
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>

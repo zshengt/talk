@@ -1,0 +1,110 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="{:U('topic/index')}">话题</a></li>
+            <li class="active">编辑话题</li>
+        </ol>
+        <div class="col-md-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3>编辑话题</h3>
+                </div>
+                <div class="panel-body">
+                    <form id="talk-edit" action="" method="post" class="form-horizontal">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <select name="cid" id="cid" class="form-control">
+                                        <option value="">选择分类</option>
+                                        <volist name="cate_lists" id="vo">
+                                            <option value="{$vo.id}" <if condition="$vo['id'] eq $topic['cid']">selected="selected"</if> >{$vo.name}</option>
+                                        </volist>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <input type="text" id="subject" name="subject" class="form-control input-lg" value="{$topic.subject}" placeholder="标题">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 hidden-xs">
+                                    <script type="text/plain" id="editor" style="width:660px;height:350px;"></script>
+                                </div>
+                                <!-- <div class="col-md-8">
+                                    <textarea class="form-control" rows="15" cols="20" name="content"></textarea>
+                                </div> -->
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input  type="hidden" name="tid"  value="{$topic.tid}">
+                                    <button type="submit" class="btn btn-primary" id="create">更新</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+<link href="__PUBLIC__/js/editor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/editor/umeditor.config.js"></script>
+<script src="__PUBLIC__/js/editor/umeditor.min.js"></script>
+<script src="__PUBLIC__/js/editor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var um = UM.getEditor('editor', {
+            toolbar: ['bold italic underline insertorderedlist insertunorderedlist  image '],
+            UEDITOR_HOME_URL: "__PUBLIC__/js/editor/",
+            imageUrl: "{:U('topic/upload')}",
+            imagePath: "__PUBLIC__/upload/attach/",
+
+            autoClearinitialContent: true,
+            wordCount: false,
+            elementPathEnabled: false,
+            autoFloatEnabled: false,
+
+            textarea: 'content'
+        });
+        um.setContent('{$topic.content}');
+
+        $('#talk-edit').on('submit', function(e) {
+            e.preventDefault();
+            var cid     =  $('#cid').val();
+            var subject =  $.trim($('#subject').val());
+            if (cid =='') {
+                bootbox.alert('分类不能为空');
+                return false;
+            }
+            if (subject == '') {
+                bootbox.alert('标题不能为空');
+                return false;
+            }
+            if (um.hasContents() == false) {
+                bootbox.alert('内容不能为空');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{:U('topic/update')}",
+                data: $("#talk-edit").serialize(),
+                success: function(data){
+                    if (data.status == 0) {
+                        bootbox.alert(data.info);
+                        return  false;
+                    } else {
+                        window.location.href = data.url;
+                    }
+
+                }
+            });
+        })
+    });
+</script>
+</body>
+</html>

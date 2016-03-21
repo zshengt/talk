@@ -1,0 +1,47 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>私信</h4>
+                </div>
+                <div class="panel-body">
+                    <notempty  name="message_lists.data">
+                    <ul class="media-list  message-list">
+                        <volist name="message_lists.data" id="message">
+                            <li class="media">
+                                <a href="{:U('user/index',array('uid'=>$message['uid']))}" class="pull-left">
+                                    <img src="{:uavatar($message['uid'])}" alt="" class="talk-avatar middle">
+                                </a>
+                                <div class="media-body">
+                                    <span class="pull-right"><a href="{:U('message/detail',array('id'=>$message['id']))}">查看对话</a></span>
+                                    <h5 class="media-heading">
+                                        <a href="{:U('user/index',array('uid'=>$message['uid']))}">{$message['username']}</a>
+                                        <small>{:friendly_date($message['update_time'])}</small>
+                                    </h5>
+                                    <div class="content">
+                                        <if condition="$message['last_uid'] eq $mid">
+                                            <strong><i class="fa fa-mail-reply"></i></strong>
+                                        </if>
+                                        {$message['last_content']}
+                                    </div>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                    <div class="text-center">
+                        {$message_lists['page']}
+                    </div>
+                    <else/>
+                        还没有私信
+                    </notempty>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<include file="Public:footer" />
+</body>
+</html>

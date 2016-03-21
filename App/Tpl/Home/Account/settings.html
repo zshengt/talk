@@ -1,0 +1,60 @@
+<include file="Public:header" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4>账号设置</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#">基本信息</a></li>
+                            <li><a href="{:U('account/avatar')}">修改头像</a></li>
+                            <li><a href="{:U('account/password')}">密码安全</a></li>
+                        </ul>
+                        <div class="talk-account">
+                            <form class="form-horizontal" action="{:U('account/settings')}"  method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="username">用户名：</label>
+                                        <div class="col-md-4">
+                                            <p>{$user['username']}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="gender">性别：</label>
+                                        <div class="col-md-4">
+                                            <input type="radio" name="gender" id="gender" value="1"
+                                                <eq name="user['gender']" value="1">checked="checked"</eq> >男
+                                            <input type="radio" name="gender" id="sex" value="2"
+                                                <eq name="user['gender']" value="2">checked="checked"</eq>>女
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="area">地区：</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="area" name="area" value="{$user['area']}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="area">个人介绍：</label>
+                                        <div class="col-md-6">
+                                            <textarea class="form-control"  name="intro" rows="6" cols="5">{$user['intro']}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-6">
+                                            <button type="submit" class="btn btn-primary">保存</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />

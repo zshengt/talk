@@ -1,0 +1,39 @@
+<include file="Public:header" />
+    <div class="container-fluid">
+        <div class="row">
+           <include file="Public:sidebar" />
+            <div class="col-sm-11  col-md-10 main">
+                <h1 class="page-header">分类列表</h1>
+                <ul class="nav nav-tabs" style="margin-bottom: 35px;">
+                    <li class="active"><a href="#">分类列表</a></li>
+                    <li><a href="{:U('topic/addCate')}">添加分类</a></li>
+                </ul>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>分类名称</th>
+                            <th>显示顺序</th>
+                            <th>创建时间</th>
+                            <th>操作</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="category" id="cate">
+                        <tr>
+                            <td>{$cate.id}</td>
+                            <td>{$cate.name}</td>
+                            <td>{$cate.view_sort}</td>
+                            <td>{:friendly_date($cate['create_time'])}</td>
+                            <td>
+                                <a href="{:U('topic/editCate',array('id'=>$cate['id']))}"><i class="fa fa-pencil-square-o"></i></a>&nbsp;
+                                <a href="{:U('topic/delCate',array('id'=>$cate['id']))}"><i class="fa fa-trash-o"></i></a>         
+                            </td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<include file="Public:footer" />

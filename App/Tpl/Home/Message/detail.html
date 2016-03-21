@@ -1,0 +1,85 @@
+<include file="Public:header" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h4>与{$chat_lists['data'][0]['username']}的对话</h4>
+                </div>
+                <div class="panel-body">
+                    <form id="reply-chat" action="" method="post" class="reply-message">
+                        <div class="form-group">
+                            <textarea id="reply_content"  class="form-control" name="content" rows="5" cols="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="{$chat_lists['data'][0]['ms_id']}" id="id">
+                            <button type="submit" class="btn btn-primary pull-right">发送</button>
+                        </div>
+                    </form>
+                    <script id="chat" type="text/x-jquery-tmpl">
+                        <li class="media" id="post-${ms_id}">
+                            <a href="" class="pull-left">
+                                <img src="${avatar}" alt="" width="50" height="50" class="avatar">
+                            </a>
+                            <div class="media-body alert alert-success">
+                                ${content}
+                                <p class="text-right">${create_time}</p>
+                            </div>
+                        </li>
+                    </script>
+                    <notempty  name="chat_lists.data">
+                    <ul class="media-list  conversion-list" id="chat-list">
+                        <foreach name="chat_lists.data" item="chat">
+                            <li class="media">
+                                <a href="{:U('user/index',array('uid'=>$chat['uid']))}"  <if condition="$chat['uid'] eq $mid">class="pull-left"<else/>class="pull-right"</if> >
+                                    <img src="{:uavatar($chat['uid'])}" alt=""  class="talk-avatar middle">
+                                </a>
+                                <div class="media-body alert <if condition="$chat['uid'] eq $mid">alert-success<else/>alert-warning</if> ">
+                                     {$chat['content']}
+                                    <p class="text-right">
+                                     {:friendly_date($chat['create_time'])}
+                                    </p>
+                                </div>
+                            </li>
+                        </foreach>
+                    </ul>
+                    </notempty>
+                    <notempty name="chat_lists['page']">
+                        <div class="text-center">
+                            {$chat_lists['page']}
+                        </div>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<include file="Public:footer" />
+<script>
+    $(function(){
+        $("#reply-chat").on('submit', function(e) {
+            e.preventDefault();
+            var  id= $('#id').val();
+            var content = $.trim($('#reply_content').val());
+            if (content == '') {
+                bootbox.alert('内容不能为空');
+                return false;
+            }
+
+            $.ajax({
+                url: "{:U('message/reply')}",
+                type: 'POST',
+                dataType: 'json',
+                data: {id:id, content: content},
+                success :function(data) {
+                    var html = $( "#chat" ).tmpl( data );
+                    $('#chat-list').prepend(html);
+                    $('#reply_content').val('');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

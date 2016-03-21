@@ -1,0 +1,40 @@
+<div class="panel-body">
+	<div class="col-md-2">
+		<img src="{:uavatar($user_list['uid'], 'big')}" class="talk-avatar big">
+	</div>
+	<div class="col-md-5">
+		<div class="talk-user">
+			<h3>{$user_list['username']}</h3>
+			<p>
+				<notempty name="$user_list.area"><i class="fa fa-location-arrow"></i> {$user_list.area} </notempty> 
+				<notempty name="$user_list.intro"><i class="fa fa-stack-exchange"></i> {$user_list.intro}<else/>还没有个人介绍</notempty>
+			</p>
+			<if condition="($mid gt 0) AND ( $uid neq $mid)">
+				<div class="profile-action">
+					<eq name="is_follow" value="1">
+						<a href="javascript:;" class="btn btn-success" id="unfollow" data-uid="{$user_list.uid}">取消关注</a>
+					<else/>
+						<a href="javascript:;" class="btn btn-default" id="follow" data-uid="{$user_list.uid}">关注</a>
+					</eq>
+					<button class="btn btn-primary" data-toggle="modal">私信</button>
+				</div>
+			</if>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<ul class="user-fans pull-right">
+			<li>
+				<a href="{:U('user/followers')}">
+					<strong>{$fans_num}</strong>
+					<span class="word">关注</span>
+				</a>
+			</li>
+			<li>
+				<a href="{:U('user/fans')}">
+					<strong>{$follow_num}</strong>
+					<span class="word">粉丝</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

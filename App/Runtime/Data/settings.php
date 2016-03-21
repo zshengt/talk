@@ -1,0 +1,1 @@
+<?php	return array ( 'web_name' => '快积分运营交流社区', 'web_keywords' => '快积分运营交流社区,积分兑换', 'web_des' => '快积分运营交流社区', 'web_copyright' => 'Powered by welinked', 'web_statis' => '', 'email_open' => 1, 'smtp_host' => 'smtp.exmail.qq.com', 'smtp_port' => '465', 'smtp_user' => 'system@welinked.cn', 'smtp_pwd' => 'wltx@0755', 'from_name' => '快积分', 'from_email' => 'system@welinked.cn', );?>
